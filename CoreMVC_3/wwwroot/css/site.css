@@ -1,0 +1,4 @@
+
+.btn { /* override value in bootstarp */
+  width:90px;
+}

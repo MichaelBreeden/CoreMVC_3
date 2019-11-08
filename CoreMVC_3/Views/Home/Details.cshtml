@@ -1,0 +1,89 @@
+﻿@model CoreMVC_3.ViewModels.HomeDetailsViewModel
+    <!--html xmlns="http://www.w3.org/1999/xhtml"-->
+    <!-- The line at top is needed to make this a Strongly Typed View
+[AT]model CoreMVC_3.Models.Employee  ... original model sent.
+
+Notice that this page does not use the _Layout.cshtml file. It's the only one.
+
+Entering "html" and tab makes html5 scaffold
+<head>
+    <title>Details</title>
+</head>
+<body-->
+    <!--h3>Details.cshtml from Views/Home folder using ViewData, ViewBag</h3-->
+    <!--h3>AT_ViewData["PageTitle"]</h3-->
+    <!--h3>AT_ViewBag.PageTitleVB</h3-->
+    <!--h3>AT_Model.PageTitle</h3-->
+
+
+    @{
+        // Layout can be removed if _layout is included in the ViewStart.cshtml file.
+        // ... Doesn't seem to be working... so...
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Employee List";
+    }
+
+    @{
+        // Video 23
+        // Anything but a string must be explicitly cast
+        // Keys are only resolved at runtime instead of compile time... not so good.
+        var employee = ViewData["Employee"] as CoreMVC_3.Models.Employee;
+        var employeeVB = ViewBag.EmployeeVB as CoreMVC_3.Models.Employee;
+
+    }
+    <!--p>
+    Using ViewData or ViewBag Keys use Dynamic property so still no compile time error checking.
+    <br />They are only resolved at runtime instead of compile time... not so good.
+    <br />Anything but a string must be explicitly cast.
+    <br />The preferred approach for passing data from Controller to View is a Strongly Typed View.
+</p-->
+    <!--div>
+    Name: AT_employee.Name
+    <br />
+    Email: AT_employee.Email
+    <br />
+    Department: AT_employee.Department
+</div>
+<p>Or with ViewBag using Dynamic property so still no compile time error checking.</p>
+<div>
+    Name: AT_employeeVB.Name
+    <br />
+    Email: AT_employeeVB.Email
+    <br />
+    Department: AT_employeeVB.Department
+</div>
+<p>Or</p>
+<div>
+    Name: AT_ViewBag.EmployeeVB.Name
+    <br />
+    Email: AT_ViewBag.EmployeeVB.Email
+    <br />
+    Department: AT_ViewBag.EmployeeVB.Department
+</div-->
+    <!--p>
+    Or pass the model through the View itself.
+    <br />To get it to be a Strongly Typed View you need to add the [AT]model command at the top of the file.
+    <br />The type can be either a Model (class) or a ViewModel (composite)
+</p-->
+    <div class="row justify-content-sm-center m-3">
+        <div class="col-sm-8">
+            <div class="card-header">
+                <h2>Name: @Model.Employee.Name</h2>
+            </div>
+            <div>
+                <img class="card-img-top" src="~images/noimage.jpg" />
+                <h4>Employee ID : @Model.Employee.Email</h4>
+                <h4>Email: @Model.Employee.Email</h4>
+                <h4>Department: @Model.Employee.Department</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="Index"
+                   class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <script src="~/js/CustomScript.js"></script>
+    }
